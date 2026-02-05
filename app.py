@@ -852,7 +852,7 @@ def extract_experience(text):
 # STREAMLIT UI
 # =====================================================
 st.set_page_config(page_title="ATS Resume Matcher", layout="wide")
-st.title("📄 ATS Resume Matcher (Excel Output)")
+st.title("ATS Score")
 
 uploaded_files = st.file_uploader(
     "Upload Resumes (PDF)",
@@ -865,14 +865,14 @@ jd_text = st.text_area("Paste Job Description", height=180)
 # =====================================================
 # ANALYSIS
 # =====================================================
-if st.button("🔍 Analyze Resumes"):
+if st.button("Check ATS Score"):
     if not uploaded_files:
         st.error("Please upload resumes")
     elif not jd_text.strip():
         st.error("Please paste Job Description")
     else:
         # Show uploaded resume list
-        st.subheader("📁 Uploaded Resume List")
+        st.subheader("Uploaded Resume List")
         for f in uploaded_files:
             st.write("•", f.name)
         st.divider()
@@ -925,13 +925,13 @@ if st.button("🔍 Analyze Resumes"):
             by="ATS Score (%)", ascending=False
         )
 
-        st.subheader("📊 ATS Screening Results")
+        st.subheader("ATS Screening Results")
         st.dataframe(df, use_container_width=True)
 
         # =====================================================
         # Display Only Shortlisted Resume Names
         # =====================================================
-        st.subheader("✅ Shortlisted Resumes")
+        st.subheader("Shortlisted Resumes")
         if shortlisted_resumes:
             for name in shortlisted_resumes:
                 st.write("•", name)
